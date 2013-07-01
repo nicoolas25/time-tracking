@@ -1,0 +1,51 @@
+doctype
+html
+  head
+    meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+      title
+      /![if lt IE 9]
+        | <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      script src="javascripts/jquery.min.js"
+      script src="javascripts/main.js"
+      link href="css/main.css" rel="stylesheet" type="text/css"
+  body
+    .card-display
+      .card
+        .title
+          span.project-name Thirdwave
+          span.total-duration 2 heures
+        .informations
+          div
+            span.legend Date
+            span.value
+              input type="date" value="2013-06-25"
+          div
+            span.legend Téléphone
+            span.value
+              input type="checkbox"
+          div
+            span.legend Estimation / devis
+            span.value
+              input type="checkbox"
+        .actions
+          button Valider
+    .tile
+      .title
+        span.project-name Thirdwave
+        span.total-duration 5 jours
+      .informations
+        div
+          span.legend Deadline
+          span.value dans 5 jours
+        div
+          span.legend Priorité
+          span.value max.
+        div
+          span.legend Temps consomé
+          span.value 2 jours
+        div
+          span.legend Temps restant
+          span.value 3 jours
+      .actions
+        button.fast Ajout rapide
+        button.custom Ajout personnalisé

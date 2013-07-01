@@ -1,0 +1,160 @@
+@import 'bourbon'
+
+// Reset CSS
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video
+  border: 0
+  font-size: 100%
+  font: inherit
+  vertical-align: baseline
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section
+  display: block
+body
+  line-height: 1
+ol,ul
+  list-style: none
+blockquote,q
+  quotes: none
+blockquote:before,blockquote:after,q:before,q:after
+  content: none
+table
+  border-collapse: collapse
+  border-spacing: 0
+
+// Begining of the style
+$tile-size: 18em
+$spacing: 0.5em
+$shadow-color: lighten(gray, 30)
+$emph-bg: lighten(gray, 45)
+$text-color: lighten(black, 15)
+
+body
+  padding: 1em
+  color: $text-color
+
+@mixin vertical($height)
+  position: absolute
+  top: 50%
+  margin-top: -($height / 2)
+
+@mixin tile-elements
+  & > div
+    padding: $spacing
+
+  & > div.mask
+    z-index: 200
+    padding: 0
+    position: absolute
+    width: 100%
+    height: 100%
+    background: rgba(black, 0.4)
+
+    & > div.counter
+      @include vertical(100px)
+      width: $tile-size
+      text-align: center
+      color: white
+      font-weight: bolder
+
+      & > span.big
+        font-size: 100px
+
+      & > span.small
+        font-size: 50px
+
+
+  & > div.title
+    background-color: $emph-bg
+
+    span.project-name
+      font-weight: bold
+      font-size: 110%
+
+    span.total-duration
+      float: right
+
+  & > div.informations
+    & > div
+      padding-top: $spacing / 2
+      padding-bottom: $spacing / 2
+      border-top: 1px dashed $shadow-color
+
+      &:first-child
+        border-top: none
+        padding-top: 0
+
+      span.legend
+        font-weight: bold
+
+      span.value
+        float: right
+
+  & > div.actions
+    @include clearfix
+
+    button
+      float: right
+      @include button(pill, red)
+
+.card-display
+  display: none
+  z-index: 500
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(black, 0.5)
+
+  .card
+    margin: auto
+    margin-top: 3em
+    box-shadow: 0 0 0.5em white
+    width: 20em
+    background: white
+    z-index: 500
+
+    @include tile-elements
+
+    & > div.informations span.value > input[type="date"]
+      max-height: 1em
+      border: none
+
+      &::-webkit-inner-spin-button
+        display: none
+
+.tile
+  position: relative
+  float: left
+  box-shadow: 0 0 0.5em $shadow-color
+  width: $tile-size
+  background: white
+  margin-right: $spacing
+  margin-bottom: $spacing
+
+  @include tile-elements
+
+$step-size: 50px
+$step-count: 8
+$target-size: $step-size * $step-count
+
+div#target
+  display: none
+  z-index: 100
+  position: absolute
+  width: $target-size
+  height: $target-size
+  border-radius: $target-size / 2
+  border: ($step-size / 2) solid rgba(blue, 0.2)
+
+  $i: 1
+  @while $i <= $step-count
+    $circle-size: $target-size - $step-size * $i
+    div#circle-#{$i}
+      width: $circle-size
+      height: $circle-size
+      border-radius: $circle-size / 2
+      border: ($step-size / 2) solid rgba(adjust-hue(blue, 360deg / $step-count * $i), 0.2)
+    $i: $i + 1

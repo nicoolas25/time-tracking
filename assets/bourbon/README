@@ -1,0 +1,1 @@
+Use the `bundle exec bourbon install` command to generate bourbon files then move the resulting `./bourbon` directory to `./assets/`.
