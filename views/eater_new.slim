@@ -2,18 +2,18 @@ doctype
 html
   head
     meta content="text/html; charset=utf-8" http-equiv="Content-Type"
-      title Liste des parts
+      title Ajouter un nouvel utilisateur
       /![if lt IE 9]
         | <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
       script src="/javascripts/jquery.min.js"
       link href="/css/main.css" rel="stylesheet" type="text/css"
   body
-    ul
-      - for eater in TimeTracking::Eater.dataset.all
-        li
-          a href="/eater/#{eater.id}" = eater.display_name
+    form action="/eater" method="post"
+      .form-field
+        label for="identifier" Nom de l'utilisateur
+        input#identifier name="identifier" value=@eater.identifier
+
+      button type="submit" Ajouter
 
     .actions
-      a href="/eater" Ajouter un utilisateur
-      |  | 
-      a href="/cakes" Liste des projets
+      a href="/" Retour

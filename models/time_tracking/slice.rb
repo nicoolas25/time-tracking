@@ -2,21 +2,31 @@ module TimeTracking
   class Slice
     include Contracts::DSL
 
-    attr_accessor :cake
-    attr_accessor :eater
+    attr_accessor :identifier
     attr_accessor :size
-    attr_accessor :bites
+    # attr_accessor :cake
+    # attr_accessor :eater
+    # attr_accessor :bites
 
-    def initialize(cake, eater, size=nil)
+    def initialize(identifier, cake, eater, size=nil)
       size ||= cake.remaining_size
       tc!(cake, Cake) and tc!(eater, Eater) and tc!(size, Float)
       sat!('size must be positive', size >= 0)
       sat!('size <= the remaining cake\'s size', size <= cake.remaining_size)
-      @cake  = cake
-      @eater = eater
-      @size  = size
-      @bites = []
+      self.cake   = cake
+      self.eater  = eater
+      @identifier = identifier
+      @size       = size
+      @bites      = []
       eater.receive_slice(self)
+    end
+
+    def remaining_size
+      return INFINITE_SIZE if size == INFINITE_SIZE
+      result = bites.reduce(size){ |rs, bite| rs - bite.size }
+      result = EMPTY_SIZE if result < 0
+      sat!('remaining size must be positive', result >= 0)
+      result
     end
 
     def bite!(bite_size)

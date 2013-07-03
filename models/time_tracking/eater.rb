@@ -2,11 +2,11 @@ module TimeTracking
   class Eater
     include Contracts::DSL
 
-    attr_reader   :identifier
-    attr_accessor :slices
+    attr_accessor :identifier
+    # attr_accessor :slices
 
-    def initialize(identifier)
-      @identifier = identifier
+    def initialize(_identifier)
+      @identifier = _identifier
       @slices     = []
     end
 

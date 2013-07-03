@@ -1,0 +1,33 @@
+doctype
+html
+  head
+    meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+      title Ajouter une nouvelle découpe
+      /![if lt IE 9]
+        | <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      script src="/javascripts/jquery.min.js"
+      link href="/css/main.css" rel="stylesheet" type="text/css"
+  body
+    form action="/cake/#{@cake.id}/slice" method="post"
+      .form-field
+        label for="identifier" Nom de la découpe
+        input#identifier name="identifier" value=@slice.identifier
+
+      .form-field
+        label for="eater" Assigner à
+        select#eater name="eater"
+          - for eater in TimeTracking::Eater.dataset.all
+            - is_selected = (@slice.eater && @slice.eater.id) == eater.id
+            option value=eater.id selected=is_selected = eater.display_name
+
+      .form-field
+        - is_infinity = @slice.size == TimeTracking::INFINITE_SIZE
+        label for="size" Taille
+        input#size type="text" name="size" value=@slice.size
+        label for="infinity" ∞
+        input#infinity type="checkbox" name="size" value="Infinity" checked=is_infinity
+
+      button type="submit" Ajouter
+
+    .actions
+      a href="/cakes" Retour

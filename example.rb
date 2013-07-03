@@ -14,8 +14,8 @@ end
 
 puts "Give slice to the eaters..."
 
-cake.slice_for!(eaters[0], 15.0)
-cake.slice_for!(eaters[1])
+cake.slice_for!('slice-1', eaters[0], 15.0)
+cake.slice_for!('slice-2', eaters[1])
 
 cake.slices.each do |slice|
   puts "  #{slice}"

@@ -4,15 +4,18 @@ module TimeTracking
 
     include Contracts::DSL
 
-    attr_accessor :slice
+    # attr_accessor :slice
+    attr_accessor :occured_at
+    attr_accessor :estimation
+    attr_accessor :phonecall
     attr_accessor :size
 
     def initialize(slice, size)
       tc!(slice, Slice) and tc!(size, Float)
       sat!('size must be positive', size >= 0)
       sat!('size <= the maximum size', size <= MAXIMUM_SIZE)
-      @slice = slice
-      @size  = size
+      self.slice = slice
+      @size      = size
     end
 
     def to_s

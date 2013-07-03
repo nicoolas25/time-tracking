@@ -1,0 +1,47 @@
+doctype
+html
+  head
+    meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+      title Liste des projets
+      /![if lt IE 9]
+        | <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      script src="/javascripts/jquery.min.js"
+      link href="/css/main.css" rel="stylesheet" type="text/css"
+  body
+    - for cake in TimeTracking::Cake.dataset.all
+      .tile
+        .title
+          span.project-name = cake.identifier
+          span.total-duration = cake.f_size
+        .informations
+          div
+            span.legend Alloué
+            span.value = cake.f_total_slices_size
+          div
+            span.legend Consomé
+            span.value = cake.f_bitten_size
+          div
+            span.legend Non-anticipé
+            span.value = cake.f_unexpected_bitten_size
+          div
+            span.legend Découpes
+            span.value = cake.slices_count
+          div
+            span.legend Participants
+            span.value = cake.eaters_names
+        .actions
+          a href="/cake/#{cake.id}/slice"
+            button.fast Découper
+
+          a href="/cake/#{cake.id}"
+            button.fast Editer
+
+          form action="/cake/#{cake.id}/destroy" method="post"
+            button.custom Supprimer
+
+
+    .actions
+      a href="/" Retour
+      |  | 
+      a href="/cake" Ajouter un projet
+

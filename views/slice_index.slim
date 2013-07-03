@@ -1,0 +1,54 @@
+doctype
+html
+  head
+    meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+      title Liste des parts
+      /![if lt IE 9]
+        | <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      script src="/javascripts/jquery.min.js"
+      script src="/javascripts/slices.js"
+      link href="/css/main.css" rel="stylesheet" type="text/css"
+  body
+    .card-display
+      .card
+        .title
+          span.project-name
+          span.total-duration
+        .informations
+          div
+            span.legend Date
+            span.value
+              - now = Time.now.strftime('%Y-%m-%d')
+              input type="date" name="date" value=now
+          div
+            span.legend Téléphone
+            span.value
+              input name="phonecall" type="checkbox"
+          div
+            span.legend Estimation / devis
+            span.value
+              input type="checkbox" name="estimation"
+        .actions
+          button Valider
+
+    - for slice in @eater.slices
+      .tile data-id=slice.id
+        .title
+          span.project-name = slice.f_full_identifier
+          span.total-duration = slice.f_size
+        .informations
+          div
+            span.legend Consomé
+            span.value = slice.f_bitten_size
+          div
+            span.legend Restant
+            span.value = slice.f_remaining_size
+          div
+            span.legend Non-anticipé
+            span.value = slice.f_unexpected_bitten_size
+        .actions
+          button.fast Ajout rapide
+          button.custom Ajout personnalisé
+
+    .actions
+      a href="/" Retour

@@ -1,5 +1,4 @@
 require 'lib/contracts'
-require 'models/time_tracking/float_extensions'
 
 module TimeTracking
   INFINITE_SIZE = Float::INFINITY

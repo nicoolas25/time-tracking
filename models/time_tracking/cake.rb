@@ -1,13 +1,11 @@
-using FloatExtensions
-
 module TimeTracking
   class Cake
     include Contracts::DSL
 
-    attr_reader   :identifier
-    attr_accessor :parent
+    attr_accessor :identifier
     attr_accessor :size
-    attr_accessor :slices
+    # attr_accessor :slices
+    # attr_accessor :parent
 
     def initialize(identifier, size=INFINITE_SIZE)
       tc!(identifier, String) and tc!(size, Float)
@@ -19,7 +17,7 @@ module TimeTracking
     end
 
     def remaining_size
-      return INFINITE_SIZE if size.infinity?
+      return INFINITE_SIZE if size == INFINITE_SIZE
       result = slices.reduce(size){ |rs, slice| rs - slice.size }
       sat!('remaining size must be positive', result >= 0)
       result
@@ -30,6 +28,10 @@ module TimeTracking
       slices << (slice = Slice.new(self, eater, slice_size))
       sat!('last element of slices must be the newly created slice', slices.last == slice)
       slice
+    end
+
+    def total_slices_size
+      slices.reduce(EMPTY_SIZE){ |bs, s| bs + s.size }
     end
 
     def bitten_size
