@@ -42,6 +42,14 @@ module TimeTracking
       slices.reduce(EMPTY_SIZE){ |bs, s| bs + s.unexpected_bitten_size }
     end
 
+    def close_slices
+      slices.select(&:close?)
+    end
+
+    def open_slices
+      slices.select(&:open?)
+    end
+
     def to_s
       "<Cake:nammed(#{identifier}),size(#{size})>"
     end

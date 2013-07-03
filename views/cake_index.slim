@@ -6,10 +6,12 @@ html
       /![if lt IE 9]
         | <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
       script src="/javascripts/jquery.min.js"
+      script src="/javascripts/cakes.js"
       link href="/css/main.css" rel="stylesheet" type="text/css"
   body
+    .card-display
     - for cake in TimeTracking::Cake.dataset.all
-      .tile
+      .tile data-id=cake.id
         .title
           span.project-name = cake.identifier
           span.total-duration = cake.f_size
@@ -23,7 +25,7 @@ html
           div
             span.legend Non-anticipé
             span.value = cake.f_unexpected_bitten_size
-          div
+          div.slice-details
             span.legend Découpes
             span.value = cake.slices_count
           div

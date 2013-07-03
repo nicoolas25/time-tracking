@@ -14,7 +14,7 @@ module InterfaceLayers
       end
 
       def valid?
-        @cake.identifier && @cake.identifier.length > 3 && @cake.size && @cake.size >= 0
+        @cake.identifier && @cake.identifier.length >= 3 && @cake.size && @cake.size >= 0
       end
 
       def identifier=(value)

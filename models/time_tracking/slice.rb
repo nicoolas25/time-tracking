@@ -4,6 +4,7 @@ module TimeTracking
 
     attr_accessor :identifier
     attr_accessor :size
+    attr_accessor :open
     # attr_accessor :cake
     # attr_accessor :eater
     # attr_accessor :bites
@@ -18,7 +19,22 @@ module TimeTracking
       @identifier = identifier
       @size       = size
       @bites      = []
+      @open       = true
       eater.receive_slice(self)
+    end
+
+    alias open? open
+
+    def close?
+      !open?
+    end
+
+    def close!
+      @open = false
+    end
+
+    def reopen!
+      @open = true
     end
 
     def remaining_size

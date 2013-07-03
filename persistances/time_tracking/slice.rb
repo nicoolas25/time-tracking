@@ -46,16 +46,18 @@ module PersistanceLayers
       infinity, size = encode_size(@size)
       { cake_id:    @cake_id,
         eater_id:   @eater_id,
-        identifier: @identifier,
+        identifier: identifier,
+        open:       open,
         infinity:   infinity,
         size:       size }
     end
 
     def attrs=(hash)
-      @id         = hash[:id]                if hash.has_key?(:id)
-      @identifier = hash[:identifier]        if hash.has_key?(:identifier)
-      @cake_id    = hash[:cake_id]           if hash.has_key?(:cake_id)
-      @eater_id   = hash[:eater_id]          if hash.has_key?(:eater_id)
+      @id         = hash[:id]         if hash.has_key?(:id)
+      @identifier = hash[:identifier] if hash.has_key?(:identifier)
+      @cake_id    = hash[:cake_id]    if hash.has_key?(:cake_id)
+      @eater_id   = hash[:eater_id]   if hash.has_key?(:eater_id)
+      @open       = hash[:open]       if hash.has_key?(:open)
 
       if hash.has_key?(:size) && hash.has_key?(:infinity)
         @size = decode_size(hash[:infinity], hash[:size])

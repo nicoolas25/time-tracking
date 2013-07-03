@@ -72,6 +72,9 @@ $ ->
   $doc    = $ document
   $btn    = $tile = $mask = reference = distance = null
 
+  $('div.card-display div.card div.actions button.cancel'). on 'click', ->
+    $card.hide()
+
   $('div.tile div.actions button').on 'mousedown', (event) ->
     $btn = $ @
     $tile = $btn.closest('div.tile')
@@ -92,7 +95,7 @@ $ ->
 
       if $btn.hasClass 'custom'
         displayCard $card, $tile, time
-        $('div.card-display div.card div.actions button'). one 'click', ->
+        $('div.card-display div.card div.actions button.submit'). one 'click', ->
           $card.hide()
           sendBite sliceId,
             size: size

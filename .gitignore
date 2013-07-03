@@ -1,7 +1,8 @@
 .sass-cache
 db/database.db
 public/css/*.css
-public/javscripts/slices.js
+public/javascripts/slices.js
+public/javascripts/cakes.js
 assets/bourbon
 .bundle
 vendor/bundle

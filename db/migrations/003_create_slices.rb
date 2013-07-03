@@ -5,6 +5,7 @@ Sequel.migration do
       foreign_key :cake_id, :cakes, on_delete: :cascade
       foreign_key :eater_id, :eaters, on_delete: :cascade
       String :identifier, null: false
+      TrueClass :open, default: true, null: false
       TrueClass :infinity, default: false, null: false
       Float :size
     end

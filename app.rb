@@ -65,6 +65,11 @@ post '/cake' do
   end
 end
 
+get '/cake/:id/slices' do
+  @cake  = TimeTracking::Cake.find(params['id'])
+  slim :cake_slice_details
+end
+
 get '/cake/:id/slice' do
   @cake  = TimeTracking::Cake.find(params['id'])
   @slice = TimeTracking::Slice.empty_mock
@@ -72,6 +77,9 @@ get '/cake/:id/slice' do
 end
 
 post '/cake/:cake/slice' do
+  @cake = TimeTracking::Cake.find(params['cake'])
+  return redirect '/cakes' unless @cake
+
   slice_builder            = TimeTracking::Slice.builder
   slice_builder.identifier = params['identifier']
   slice_builder.size       = params['size']
@@ -106,6 +114,22 @@ post '/slice/:slice/bite' do
     {success: false}.to_json
   end
 end
+
+post '/slice/:id/close' do
+  @slice = TimeTracking::Slice.find(params['id'])
+  @slice.close!
+  @slice.save
+  redirect '/cakes'
+end
+
+post '/slice/:id/reopen' do
+  @slice = TimeTracking::Slice.find(params['id'])
+  @slice.reopen!
+  @slice.save
+  redirect '/cakes'
+end
+
+
 
 get '/eater/:id' do
   @eater = TimeTracking::Eater.find(params['id'])

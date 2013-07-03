@@ -7,8 +7,8 @@ module Helpers
     def slices_count
       case slices.size
       when 0 then 'aucune'
-      when 1 then '1 découpe'
-      else "#{slices.size} découpes"
+      when 1 then "#{open_slices.size}/#{close_slices.size} découpe"
+      else "#{open_slices.size}/#{close_slices.size} découpes"
       end
     end
 

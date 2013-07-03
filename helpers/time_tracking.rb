@@ -5,7 +5,7 @@ module Helpers
     elsif s <= 7
       if s % 7 == 0 then "#{(s / 7).to_i} jour" else "%.1f jour" % (s / 7) end
     else
-      if s % 7 == 0 then "#{(s / 7).to_i} jours" else "%.1f jour" % (s / 7) end
+      if s % 7 == 0 then "#{(s / 7).to_i} jours" else "%.1f jours" % (s / 7) end
     end
   end
 

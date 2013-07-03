@@ -29,9 +29,10 @@ html
             span.value
               input type="checkbox" name="estimation"
         .actions
-          button Valider
+          button.submit Valider
+          button.cancel Annuler
 
-    - for slice in @eater.slices
+    - for slice in @eater.open_slices
       .tile data-id=slice.id
         .title
           span.project-name = slice.f_full_identifier

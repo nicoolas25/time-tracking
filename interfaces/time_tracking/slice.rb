@@ -7,6 +7,7 @@ module InterfaceLayers
     class Builder
       def initialize(slice)
         @slice = slice
+        @slice.open = true
       end
 
       def build!
@@ -14,7 +15,7 @@ module InterfaceLayers
       end
 
       def valid?
-        @slice.eater && @slice.cake && @slice.identifier && @slice.identifier.length > 3 && @slice.size && @slice.size >= 0
+        @slice.eater && @slice.cake && @slice.identifier && @slice.identifier.length >= 3 && @slice.size && @slice.size >= 0
       end
 
       def identifier=(value)

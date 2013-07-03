@@ -12,7 +12,7 @@ module TimeTracking
 
     def initialize(slice, size)
       tc!(slice, Slice) and tc!(size, Float)
-      sat!('size must be positive', size >= 0)
+      sat!('size must be strictly positive', size > 0)
       sat!('size <= the maximum size', size <= MAXIMUM_SIZE)
       self.slice = slice
       @size      = size

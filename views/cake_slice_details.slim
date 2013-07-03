@@ -1,0 +1,30 @@
+.card
+  .title
+    span.project-name = @cake.identifier
+    span.slices-count = @cake.slices_count
+
+  - for slice in @cake.slices
+    .slice
+      div
+        span.legend Nom
+        span.value = slice.identifier
+      div
+        span.legend Utilisateur
+        span.value = slice.eater.identifier
+      div
+        span.legend Alloué
+        span.value = slice.f_size
+      div
+        span.legend Consomé
+        span.value = slice.f_bitten_size
+
+      .actions
+        - if slice.open?
+          form action="/slice/#{slice.id}/close" method="POST"
+            button type="submit" Fermer
+        - else
+          form action="/slice/#{slice.id}/reopen" method="POST"
+            button type="submit" Réouvrir
+
+  .actions
+    button.cancel Masquer

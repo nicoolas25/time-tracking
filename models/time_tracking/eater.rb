@@ -15,6 +15,10 @@ module TimeTracking
       sat!('last element of slices must be the given slice', slices.last == slice)
     end
 
+    def open_slices
+      slices.select(&:open?)
+    end
+
     def to_s
       "<Eater:nammed(#{identifier})>"
     end

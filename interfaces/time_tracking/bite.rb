@@ -14,7 +14,7 @@ module InterfaceLayers
       end
 
       def valid?
-        @bite.occured_at && !@bite.phonecall.nil? && !@bite.estimation.nil? && @bite.slice && @bite.size && @bite.size >= 0
+        @bite.occured_at && !@bite.phonecall.nil? && !@bite.estimation.nil? && @bite.slice && @bite.size && @bite.size > 0
       end
 
       def occured_at=(value)
