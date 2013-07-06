@@ -12,8 +12,10 @@ module Helpers
   autoload :Cake, 'helpers/time_tracking/cake'
   autoload :Slice, 'helpers/time_tracking/slice'
   autoload :Eater, 'helpers/time_tracking/eater'
+  autoload :Bite, 'helpers/time_tracking/bite'
 end
 
 TimeTracking::Cake.send(:include, Helpers::Cake)
 TimeTracking::Slice.send(:include, Helpers::Slice)
 TimeTracking::Eater.send(:include, Helpers::Eater)
+TimeTracking::Bite.send(:include, Helpers::Bite)

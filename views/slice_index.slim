@@ -34,12 +34,22 @@ html
 
     .display-area
       .left-panel
-        .actions
-          div.title Navigation
-          div.content
+        div
+          .title Navigation
+          .content
             ul
               li
                 a href="/" Retour
+
+        .last-bites
+          .title Dernière entrées
+          .content
+            ul
+              - for bite in @eater.bites.reverse[0..10]
+                li
+                  span.name = bite.slice.f_full_identifier
+                  span.date = bite.f_occured_at
+                  span.size = bite.f_size
 
       .tiles-panel
         - for slice in @eater.open_slices

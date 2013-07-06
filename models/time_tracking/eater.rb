@@ -19,6 +19,10 @@ module TimeTracking
       slices.select(&:open?)
     end
 
+    def bites
+      slices.reduce([]){ |b, s| b += s.bites }.sort_by(&:occured_at)
+    end
+
     def to_s
       "<Eater:nammed(#{identifier})>"
     end
