@@ -8,12 +8,19 @@ html
       script src="/javascripts/jquery.min.js"
       link href="/css/main.css" rel="stylesheet" type="text/css"
   body
-    ul
-      - for eater in TimeTracking::Eater.dataset.all
-        li
-          a href="/eater/#{eater.id}" = eater.display_name
+    .display-area
+      .left-panel
+        .actions
+          div.title Navigation
+          div.content
+            ul
+              li
+                a href="/eater" Ajouter un utilisateur
+              li
+                a href="/cakes" Liste des projets
 
-    .actions
-      a href="/eater" Ajouter un utilisateur
-      |  | 
-      a href="/cakes" Liste des projets
+      .form-panel
+        ul
+          - for eater in TimeTracking::Eater.dataset.all
+            li
+              a href="/eater/#{eater.id}" = eater.display_name

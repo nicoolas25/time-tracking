@@ -32,24 +32,31 @@ html
           button.submit Valider
           button.cancel Annuler
 
-    - for slice in @eater.open_slices
-      .tile data-id=slice.id
-        .title
-          span.project-name = slice.f_full_identifier
-          span.total-duration = slice.f_size
-        .informations
-          div
-            span.legend Consomé
-            span.value = slice.f_bitten_size
-          div
-            span.legend Restant
-            span.value = slice.f_remaining_size
-          div
-            span.legend Non-anticipé
-            span.value = slice.f_unexpected_bitten_size
+    .display-area
+      .left-panel
         .actions
-          button.fast Ajout rapide
-          button.custom Ajout personnalisé
+          div.title Navigation
+          div.content
+            ul
+              li
+                a href="/" Retour
 
-    .actions
-      a href="/" Retour
+      .tiles-panel
+        - for slice in @eater.open_slices
+          .tile data-id=slice.id
+            .title
+              span.project-name = slice.f_full_identifier
+              span.total-duration = slice.f_size
+            .informations
+              div
+                span.legend Consomé
+                span.value = slice.f_bitten_size
+              div
+                span.legend Restant
+                span.value = slice.f_remaining_size
+              div
+                span.legend Non-anticipé
+                span.value = slice.f_unexpected_bitten_size
+            .actions
+              button.fast Ajout rapide
+              button.custom Ajout personnalisé

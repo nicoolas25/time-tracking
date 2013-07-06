@@ -10,40 +10,48 @@ html
       link href="/css/main.css" rel="stylesheet" type="text/css"
   body
     .card-display
-    - for cake in TimeTracking::Cake.dataset.all
-      .tile data-id=cake.id
-        .title
-          span.project-name = cake.identifier
-          span.total-duration = cake.f_size
-        .informations
-          div
-            span.legend Alloué
-            span.value = cake.f_total_slices_size
-          div
-            span.legend Consomé
-            span.value = cake.f_bitten_size
-          div
-            span.legend Non-anticipé
-            span.value = cake.f_unexpected_bitten_size
-          div.slice-details
-            span.legend Découpes
-            span.value = cake.slices_count
-          div
-            span.legend Participants
-            span.value = cake.eaters_names
+    .display-area
+      .left-panel
         .actions
-          a href="/cake/#{cake.id}/slice"
-            button.fast Découper
+          div.title Navigation
+          div.content
+            ul
+              li
+                a href="/cake" Ajouter un nouveau projet
+              li
+                a href="/" Retour
 
-          a href="/cake/#{cake.id}"
-            button.fast Editer
+      .tiles-panel
+        - for cake in TimeTracking::Cake.dataset.all
+          .tile data-id=cake.id
+            .title
+              span.project-name = cake.identifier
+              span.total-duration = cake.f_size
+            .informations
+              div
+                span.legend Alloué
+                span.value = cake.f_total_slices_size
+              div
+                span.legend Consomé
+                span.value = cake.f_bitten_size
+              div
+                span.legend Non-anticipé
+                span.value = cake.f_unexpected_bitten_size
+              div.slice-details
+                span.legend Découpes
+                span.value = cake.slices_count
+              div
+                span.legend Participants
+                span.value = cake.eaters_names
+            .actions
+              a href="/cake/#{cake.id}/slice"
+                button.fast Découper
 
-          form action="/cake/#{cake.id}/destroy" method="post"
-            button.custom Supprimer
+              a href="/cake/#{cake.id}"
+                button.fast Editer
+
+              form action="/cake/#{cake.id}/destroy" method="post"
+                button.custom Supprimer
 
 
-    .actions
-      a href="/" Retour
-      |  | 
-      a href="/cake" Ajouter un projet
 

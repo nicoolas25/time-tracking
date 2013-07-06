@@ -8,12 +8,20 @@ html
       script src="/javascripts/jquery.min.js"
       link href="/css/main.css" rel="stylesheet" type="text/css"
   body
-    form action="/eater" method="post"
-      .form-field
-        label for="identifier" Nom de l'utilisateur
-        input#identifier name="identifier" value=@eater.identifier
+    .display-area
+      .left-panel
+        .actions
+          div.title Navigation
+          div.content
+            ul
+              li
+                a href="/" Retour
 
-      button type="submit" Ajouter
 
-    .actions
-      a href="/" Retour
+      .form-panel
+        form action="/eater" method="post"
+          .form-field
+            label for="identifier" Nom de l'utilisateur
+            input#identifier name="identifier" value=@eater.identifier
+
+          button type="submit" Ajouter

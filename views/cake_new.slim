@@ -8,27 +8,35 @@ html
       script src="/javascripts/jquery.min.js"
       link href="/css/main.css" rel="stylesheet" type="text/css"
   body
-    form action="/cake" method="post"
-      .form-field
-        label for="identifier" Nom du projet
-        input#identifier name="identifier" value=@cake.identifier
+    .display-area
+      .left-panel
+        .actions
+          div.title Navigation
+          div.content
+            ul
+              li
+                a href="/cakes" Retour
 
-      .form-field
-        label for="parent" Parent
-        select#parent name="parent"
-          option value="" selected=@cake.parent.nil? Aucun
-          - for cake in TimeTracking::Cake.dataset.all
-            - is_selected = (@cake.parent && @cake.parent.id) == cake.id
-            option value=cake.id selected=is_selected = cake.identifier
 
-      .form-field
-        - is_infinity = @cake.size == TimeTracking::INFINITE_SIZE
-        label for="size" Taille
-        input#size type="text" name="size" value=@cake.size
-        label for="infinity" ∞
-        input#infinity type="checkbox" name="size" value="Infinity" checked=is_infinity
+      .form-panel
+        form action="/cake" method="post"
+          .form-field
+            label for="identifier" Nom du projet
+            input#identifier name="identifier" value=@cake.identifier
 
-      button type="submit" Ajouter
+          .form-field
+            label for="parent" Parent
+            select#parent name="parent"
+              option value="" selected=@cake.parent.nil? Aucun
+              - for cake in TimeTracking::Cake.dataset.all
+                - is_selected = (@cake.parent && @cake.parent.id) == cake.id
+                option value=cake.id selected=is_selected = cake.identifier
 
-    .actions
-      a href="/cakes" Retour
+          .form-field
+            - is_infinity = @cake.size == TimeTracking::INFINITE_SIZE
+            label for="size" Taille
+            input#size type="text" name="size" value=@cake.size
+            label for="infinity" ∞
+            input#infinity type="checkbox" name="size" value="Infinity" checked=is_infinity
+
+          button type="submit" Ajouter

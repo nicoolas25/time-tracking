@@ -8,26 +8,33 @@ html
       script src="/javascripts/jquery.min.js"
       link href="/css/main.css" rel="stylesheet" type="text/css"
   body
-    form action="/cake/#{@cake.id}/slice" method="post"
-      .form-field
-        label for="identifier" Nom de la découpe
-        input#identifier name="identifier" value=@slice.identifier
+    .display-area
+      .left-panel
+        .actions
+          div.title Navigation
+          div.content
+            ul
+              li
+                a href="/cakes" Retour
 
-      .form-field
-        label for="eater" Assigner à
-        select#eater name="eater"
-          - for eater in TimeTracking::Eater.dataset.all
-            - is_selected = (@slice.eater && @slice.eater.id) == eater.id
-            option value=eater.id selected=is_selected = eater.display_name
+      .form-panel
+        form action="/cake/#{@cake.id}/slice" method="post"
+          .form-field
+            label for="identifier" Nom de la découpe
+            input#identifier name="identifier" value=@slice.identifier
 
-      .form-field
-        - is_infinity = @slice.size == TimeTracking::INFINITE_SIZE
-        label for="size" Taille
-        input#size type="text" name="size" value=@slice.size
-        label for="infinity" ∞
-        input#infinity type="checkbox" name="size" value="Infinity" checked=is_infinity
+          .form-field
+            label for="eater" Assigner à
+            select#eater name="eater"
+              - for eater in TimeTracking::Eater.dataset.all
+                - is_selected = (@slice.eater && @slice.eater.id) == eater.id
+                option value=eater.id selected=is_selected = eater.display_name
 
-      button type="submit" Ajouter
+          .form-field
+            - is_infinity = @slice.size == TimeTracking::INFINITE_SIZE
+            label for="size" Taille
+            input#size type="text" name="size" value=@slice.size
+            label for="infinity" ∞
+            input#infinity type="checkbox" name="size" value="Infinity" checked=is_infinity
 
-    .actions
-      a href="/cakes" Retour
+          button type="submit" Ajouter

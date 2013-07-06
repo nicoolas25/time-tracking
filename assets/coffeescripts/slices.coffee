@@ -79,13 +79,13 @@ $ ->
     $btn = $ @
     $tile = $btn.closest('div.tile')
     $mask = makeMask 0.0
-    reference = {x: event.clientX, y: event.clientY}
+    reference = {x: event.pageX, y: event.pageY}
     displayTargetAt $target, reference
     $tile.prepend $mask
 
   $doc.on 'mouseup', (event) ->
     if $btn
-      distance = distanceBetween reference, {x: event.clientX, y: event.clientY}
+      distance = distanceBetween reference, {x: event.pageX, y: event.pageY}
       time     = Math.floor(distance / STEP) * 0.5
       size     = Math.min(time, DAY_SIZE)
       sliceId  = $tile.data('id')
@@ -110,7 +110,7 @@ $ ->
 
   $doc.on 'mousemove', (event) ->
     if $btn
-      distance = distanceBetween reference, {x: event.clientX, y: event.clientY}
+      distance = distanceBetween reference, {x: event.pageX, y: event.pageY}
       time     = Math.floor(distance / STEP) * 0.5
       setMaskValue $mask, time
 
