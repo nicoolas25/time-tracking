@@ -1,5 +1,7 @@
 # Time-tracking
 
+<a href="http://twitter.com/nicoolas25"><img src="http://www.pairprogramwith.me/assets/badge.svg" style="height:40px" title="We can pair on this!" /></a>
+
 Un outils simple de gestion et d'analyse de son temps.
 
 ## Introduction
